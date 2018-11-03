@@ -32,7 +32,7 @@ func selectionSort(arr []int, n int) {
 func main() {
 	a := []int{10, 90, 8, 7, 6, 50, 4, 31, 2, 101, 10}
 	fmt.Println(a)
-	fmt.Printf("running...\n")
+	fmt.Printf("running......\n")
 	selectionSort(a, 11)
 	fmt.Printf("done\n")
 	fmt.Println(a)
