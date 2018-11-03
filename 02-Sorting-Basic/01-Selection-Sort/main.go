@@ -16,14 +16,14 @@ func selectionSort(arr []int, n int) {
 
 	for i := 0; i < n; i++ {
 		//寻找[i, n)区间里的最小值
-		mi := i
+		minIndex := i
 		for j := i + 1; j < n; j++ {
-			if arr[j] < arr[mi] {
-				mi = j
+			if arr[j] < arr[minIndex] {
+				minIndex = j
 			}
 		}
 
-		swap(&arr[i], &arr[mi])
+		swap(&arr[i], &arr[minIndex])
 
 	}
 
