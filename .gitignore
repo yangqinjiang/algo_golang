@@ -5,7 +5,7 @@
 *.log
 log/
 # Binaries for programs and plugins
-
+02-Sorting-Basic/01-Selection-Sort/01-Selection-Sort
 *.dll
 *.so
 *.dylib
@@ -15,3 +15,5 @@ log/
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+#
