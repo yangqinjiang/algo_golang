@@ -32,7 +32,7 @@ func selectionSort(arr []int, n int) {
 func main() {
 	fmt.Println("测试排序算法辅助函数")
 	// 测试排序算法辅助函数
-	N := 20000
+	N := 200
 	st := new(SortTestHelper)
 	arr := st.generateRandomArray(N, 0, 100000)
 	//fmt.Println(arr)
