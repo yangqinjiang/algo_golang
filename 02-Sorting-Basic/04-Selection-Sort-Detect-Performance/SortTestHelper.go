@@ -49,7 +49,7 @@ func (e SortTestHelper) TestSort(sortName string, your_sort func(arr []int, n in
 	startTime := time.Now()
 	//被测试的函数指针
 	your_sort(arr, n)
-
+	fmt.Println(&your_sort)
 	elapsed := time.Since(startTime)
 
 	if !e.IsSorted(arr, n) {

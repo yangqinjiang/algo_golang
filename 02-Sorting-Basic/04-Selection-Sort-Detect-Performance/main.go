@@ -36,6 +36,7 @@ func main() {
 	st := new(SortTestHelper)
 	arr := st.generateRandomArray(N, 0, 100000)
 	//fmt.Println(arr)
+
 	st.TestSort("selection Sort", selectionSort, arr, len(arr))
 	//st.printArray(arr, N)
 
