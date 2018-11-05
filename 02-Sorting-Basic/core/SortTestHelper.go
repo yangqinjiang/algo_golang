@@ -59,3 +59,11 @@ func (e SortTestHelper) TestSort(sortName string, your_sort func(arr []int, n in
 
 	fmt.Printf("%s %f %s", sortName, elapsed.Seconds(), " s \n")
 }
+
+//拷贝整型数组a中的所有元素到一个新的数组, 并返回新的数组
+func (e SortTestHelper) CopyIntArray(arr []int, n int) []int {
+	// 预分配足够多的元素切片
+	copyData := make([]int, n)
+	copy(copyData, arr)
+	return copyData
+}
