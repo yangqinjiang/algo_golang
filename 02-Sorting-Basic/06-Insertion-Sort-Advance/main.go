@@ -7,7 +7,7 @@ import (
 
 func main() {
 	fmt.Println("running...")
-	N := 100000
+	N := 10
 	st := new(core.SortTestHelper)
 	arr1 := st.GenerateRandomArray(N, 0, 100000)
 
@@ -23,6 +23,6 @@ func main() {
 	st.TestSort("selection Sort", ss.SelectionSort, arr1, N)
 	//2
 	iso := new(core.InsertionSort)
-	st.TestSort("Insertion Sort", iso.InsertionSort, arr2, N)
+	st.TestSort("Insertion Sort Advance", iso.InsertionSortAdvance, arr2, N)
 
 }
