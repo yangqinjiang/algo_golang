@@ -1,4 +1,4 @@
-package main
+package core
 
 import (
 	"fmt"
@@ -6,12 +6,14 @@ import (
 	"time"
 )
 
+/**
+排序的helper
+*/
 type SortTestHelper struct {
-	c int
 }
 
 // 生成有n个元素的随机数组,每个元素的随机范围为[rangeL, rangeR]
-func (e SortTestHelper) generateRandomArray(n, rangeL, rangeR int) []int {
+func (e SortTestHelper) GenerateRandomArray(n, rangeL, rangeR int) []int {
 	fmt.Println("call generateRandomArray")
 	if rangeL > rangeR {
 		panic("随机范围错误")
@@ -27,7 +29,7 @@ func (e SortTestHelper) generateRandomArray(n, rangeL, rangeR int) []int {
 	return arr
 }
 
-func (e SortTestHelper) printArray(arr []int, n int) {
+func (e SortTestHelper) PrintArray(arr []int, n int) {
 	fmt.Println("call printArray")
 	// 打印arr数组的所有内容
 	fmt.Println(arr)

@@ -1,43 +1,20 @@
 package main
 
-import "fmt"
-
-/**
-交换数组或切片的两个元素
-*/
-func swap(a, b *int) {
-	*a, *b = *b, *a
-}
-
-/**
-选择排序
-*/
-func selectionSort(arr []int, n int) {
-
-	for i := 0; i < n; i++ {
-		//寻找[i, n)区间里的最小值
-		minIndex := i
-		for j := i + 1; j < n; j++ {
-			if arr[j] < arr[minIndex] {
-				minIndex = j
-			}
-		}
-
-		swap(&arr[i], &arr[minIndex])
-
-	}
-
-}
+import (
+	"algo_golang/02-Sorting-Basic/core"
+	"fmt"
+)
 
 func main() {
 	fmt.Println("测试排序算法辅助函数")
 	// 测试排序算法辅助函数
-	N := 200
-	st := new(SortTestHelper)
-	arr := st.generateRandomArray(N, 0, 100000)
-	//fmt.Println(arr)
+	N := 20000
+	st := new(core.SortTestHelper)
+	arr := st.GenerateRandomArray(N, 0, 100000)
+	fmt.Println(arr)
+	ss := new(core.SelectionSort)
 
-	st.TestSort("selection Sort", selectionSort, arr, len(arr))
-	//st.printArray(arr, N)
+	st.TestSort("selection Sort", ss.SelectionSort, arr, len(arr))
+	st.PrintArray(arr, N)
 
 }
