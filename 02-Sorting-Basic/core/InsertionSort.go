@@ -32,13 +32,14 @@ func (e *InsertionSort) InsertionSort(arr []int, n int) {
 
 }
 
+//更好的插入排序
 func (e *InsertionSort) InsertionSortAdvance(arr []int, n int) {
 	for i := 1; i < n; i++ {
 		//TODO:写法三
 		//注意边界
 		e := arr[i]
 		j := 0 // j保存元素e应该插入的位置
-		for j := i; j > 0 && arr[j-1] > e; j-- {
+		for j = i; j > 0 && arr[j-1] > e; j-- {
 			arr[j] = arr[j-1]
 		}
 		arr[j] = e
