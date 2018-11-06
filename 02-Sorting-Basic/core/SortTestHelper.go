@@ -13,7 +13,7 @@ type SortTestHelper struct {
 }
 
 // 生成有n个元素的随机数组,每个元素的随机范围为[rangeL, rangeR]
-func (e SortTestHelper) GenerateRandomArray(n, rangeL, rangeR int) []int {
+func (e *SortTestHelper) GenerateRandomArray(n, rangeL, rangeR int) []int {
 	fmt.Println("call generateRandomArray")
 	if rangeL > rangeR {
 		panic("随机范围错误")
@@ -25,6 +25,26 @@ func (e SortTestHelper) GenerateRandomArray(n, rangeL, rangeR int) []int {
 	for i := 0; i < n; i++ {
 		//随机生成
 		arr[i] = r.Int()%(rangeR-rangeL+1) + rangeL
+	}
+	return arr
+}
+
+func (e *SortTestHelper) GenerateNearlyOrderedArray(n, swapTimes int) []int {
+	fmt.Println("call GenerateNearlyOrderedArray")
+	arr := make([]int, n)
+	for i := 0; i < n; i++ {
+		//生成
+		arr[i] = i
+	}
+
+	//随机数种子
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	//交换其中一些数据
+	for j := 0; j < swapTimes; j++ {
+		posx := r.Int() % n
+		posy := r.Int() % n
+		//交换
+		arr[posx], arr[posy] = arr[posy], arr[posx]
 	}
 	return arr
 }
