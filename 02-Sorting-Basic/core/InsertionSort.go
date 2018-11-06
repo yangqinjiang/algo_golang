@@ -40,8 +40,8 @@ func (e *InsertionSort) InsertionSortAdvance(arr []int, n int) {
 		e := arr[i]
 		j := 0 // j保存元素e应该插入的位置
 		for j = i; j > 0 && arr[j-1] > e; j-- {
-			arr[j] = arr[j-1]
+			arr[j] = arr[j-1] //前一元素,往后移动
 		}
-		arr[j] = e
+		arr[j] = e //不满足条件,则是当前比较的元素
 	}
 }
