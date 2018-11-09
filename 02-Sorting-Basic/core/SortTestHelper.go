@@ -67,6 +67,7 @@ func (e SortTestHelper) IsSorted(arr []int, n int) bool {
 }
 
 // 测试sort排序算法排序arr数组所得到结果的正确性和算法运行时间
+//TODO:your_sort 应该使用接口形式
 func (e SortTestHelper) TestSort(sortName string, your_sort func(arr []int, n int), arr []int, n int) {
 	startTime := time.Now()
 	//被测试的函数指针
@@ -77,7 +78,7 @@ func (e SortTestHelper) TestSort(sortName string, your_sort func(arr []int, n in
 		panic(sortName + "排序不正确")
 	}
 
-	fmt.Printf("%s %f %s", sortName, elapsed.Seconds(), " s \n")
+	fmt.Printf("%s: took %f%s", sortName, elapsed.Seconds(), "s \n")
 }
 
 //拷贝整型数组a中的所有元素到一个新的数组, 并返回新的数组
