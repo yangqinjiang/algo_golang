@@ -102,6 +102,12 @@ func (e *MergeSort)MergeSortBU(arr []int, n int)  {
 
 
 // 使用自底向上的归并排序算法
+//优化版本
+//https://github.com/liuyubobobo/Play-with-Algorithms/blob/master/03-Sorting-Advance/Course%20Code%20(C%2B%2B)/04-Merge-Sort-Bottom-Up/main.cpp
+// Merge Sort BU 也是一个O(nlogn)复杂度的算法，虽然只使用两重for循环
+// 所以，Merge Sort BU也可以在1秒之内轻松处理100万数量级的数据
+// 注意：不要轻易根据循环层数来判断算法的复杂度，Merge Sort BU就是一个反例
+// 关于这部分陷阱，推荐看我的《玩转算法面试》课程，第二章：《面试中的复杂度分析》：）
 func (e *MergeSort)MergeSortBUAdvance(arr []int, n int)  {
 
 	step := 16 //小数组 的容量大小
@@ -134,11 +140,5 @@ func (e *MergeSort)MergeSortBUAdvance(arr []int, n int)  {
 		}
 	}
 
-	//TODO:优化版本
-	//https://github.com/liuyubobobo/Play-with-Algorithms/blob/master/03-Sorting-Advance/Course%20Code%20(C%2B%2B)/04-Merge-Sort-Bottom-Up/main.cpp
 
-	// Merge Sort BU 也是一个O(nlogn)复杂度的算法，虽然只使用两重for循环
-	// 所以，Merge Sort BU也可以在1秒之内轻松处理100万数量级的数据
-	// 注意：不要轻易根据循环层数来判断算法的复杂度，Merge Sort BU就是一个反例
-	// 关于这部分陷阱，推荐看我的《玩转算法面试》课程，第二章：《面试中的复杂度分析》：）
 }
