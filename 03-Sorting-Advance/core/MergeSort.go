@@ -1,5 +1,7 @@
 package core
 
+import "algo_golang/02-Sorting-Basic/core"
+
 type MergeSort struct {
 }
 
@@ -45,6 +47,32 @@ func (e *MergeSort) __merge(arr []int, l, mid, r int) {
 			arr[k] = aux[j-l]
 			j++
 		}
+	}
+
+}
+
+//优化的合并排序
+
+func (e *MergeSort)MergeSort2(arr []int, n int)  {
+	e.__mergeSort2(arr, 0, n-1)
+}
+// 使用优化的归并排序算法, 对arr[l...r]的范围进行排序
+func (e *MergeSort) __mergeSort2(arr []int, l,r int) {
+
+	//优化2:对于小规模数组,使用插入排序
+	if r-l <=15{
+		iss := new(core.InsertionSort)
+		iss.InsertionSortLR(arr,l,r)
+		return
+	}
+	mid := (l + r) / 2 //注意int的范围
+	e.__mergeSort2(arr, l, mid)
+	e.__mergeSort2(arr, mid+1, r) //这里是 加一
+
+	// 优化1: 对于arr[mid] <= arr[mid+1]的情况,不进行merge
+	// 对于近乎有序的数组非常有效,但是对于一般情况,有一定的性能损失
+	if arr[mid] > arr[mid+1]{
+		e.__merge(arr, l, mid, r)
 	}
 
 }

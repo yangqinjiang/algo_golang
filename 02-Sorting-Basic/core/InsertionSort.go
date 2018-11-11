@@ -45,3 +45,17 @@ func (e *InsertionSort) InsertionSortAdvance(arr []int, n int) {
 		arr[j] = e //不满足条件,则是当前比较的元素
 	}
 }
+
+// 对arr[l...r]范围的数组进行插入排序
+func (e *InsertionSort)InsertionSortLR(arr []int,l,r int)  {
+	for i := l+1; i <= r; i++ {
+		//TODO:写法三
+		//注意边界
+		e := arr[i]
+		j := 0 // j保存元素e应该插入的位置
+		for j = i; j > l && arr[j-1] > e; j-- {
+			arr[j] = arr[j-1] //前一元素,往后移动
+		}
+		arr[j] = e //不满足条件,则是当前比较的元素
+	}
+}
