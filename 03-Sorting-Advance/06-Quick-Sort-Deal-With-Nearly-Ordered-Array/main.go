@@ -45,4 +45,16 @@ func main() {
 	st.TestSort("Quick Sort", qs.QuickSort, arr2, n)
 	st.TestSort("Quick Sort advance", qs_advance.QuickSort, arr3, n)
 
+	fmt.Println("-------------")
+	// 测试3 测试存在包含大量相同元素的数组
+	// 但此时, 对于含有大量相同元素的数组, 我们的快速排序算法再次退化成了O(n^2)级别的算法
+	// 思考一下为什么在这种情况下, 快排退化成了O(n^2)的算法? :)
+	swapTimes = 10
+	fmt.Printf("Test for random array, size = %d ,, random range [0,%d]\n", n, swapTimes)
+	arr1 = st.GenerateRandomArray(n, 0,swapTimes)
+	arr2 = st.CopyIntArray(arr1, n)
+
+	st.TestSort("Merge Sort MergeSortBUAdvance", ms.MergeSortBUAdvance, arr1, n)
+	st.TestSort("Quick Sort advance", qs_advance.QuickSort, arr2, n)
+
 }
