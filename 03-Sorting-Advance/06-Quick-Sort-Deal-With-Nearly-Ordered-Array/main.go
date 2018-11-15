@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	fmt.Println("running Quick Sort")
+	fmt.Println("running Quick Sort 2 Ways")
 
 	// 比较Merge Sort和Quick Sort两种排序算法的性能效率
 	// 两种排序算法虽然都是O(nlogn)级别的, 但是Quick Sort算法有常数级的优势
@@ -17,7 +17,7 @@ func main() {
 	n := 1000000
 	ms := new(core2.MergeSort)
 	qs := new(core2.QuickSort)
-	qs_advance := new(core2.QuickSortAdvance)
+	qs_2_way := new(core2.QuickSort2Way)
 	// 测试1 一般性测试
 	fmt.Printf("Test for random array,size = %d , random range [0,%d]\n", n, n)
 
@@ -28,7 +28,7 @@ func main() {
 
 	st.TestSort("Merge Sort MergeSortBUAdvance", ms.MergeSortBUAdvance, arr1, n)
 	st.TestSort("Quick Sort", qs.QuickSort, arr2, n)
-	st.TestSort("Quick Sort Advance", qs_advance.QuickSort, arr3, n)
+	st.TestSort("Quick Sort 2 Way", qs_2_way.QuickSort, arr3, n)
 
 	fmt.Println("-------------")
 	// 测试2 测试近乎有序的数组
@@ -43,6 +43,6 @@ func main() {
 
 	st.TestSort("Merge Sort MergeSortBUAdvance", ms.MergeSortBUAdvance, arr1, n)
 	st.TestSort("Quick Sort", qs.QuickSort, arr2, n)
-	st.TestSort("Quick Sort Advance", qs_advance.QuickSort, arr3, n)
+	st.TestSort("Quick Sort 2 Way", qs_2_way.QuickSort, arr3, n)
 
 }
