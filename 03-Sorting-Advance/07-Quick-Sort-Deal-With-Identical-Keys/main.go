@@ -18,7 +18,7 @@ func main() {
 	ms := new(core2.MergeSort)
 	qs := new(core2.QuickSort)
 	qs_advance := new(core2.QuickSortAdvance)
-	qs_2_part := new(core2.QuickSortTwoPartition)
+	qs_2_ways := new(core2.QuickSortTwoWays)
 	// 测试1 一般性测试
 	fmt.Printf("Test for random array,size = %d , random range [0,%d]\n", n, n)
 
@@ -31,7 +31,7 @@ func main() {
 	st.TestSort("Merge Sort MergeSortBUAdvance", ms.MergeSortBUAdvance, arr1, n)
 	st.TestSort("Quick Sort", qs.QuickSort, arr2, n)
 	st.TestSort("Quick Sort advance", qs_advance.QuickSort, arr3, n)
-	st.TestSort("Quick Sort 2 part", qs_2_part.QuickSort, arr4, n)
+	st.TestSort("Quick Sort 2 part", qs_2_ways.QuickSort, arr4, n)
 
 	fmt.Println("-------------")
 	// 测试2 测试近乎有序的数组
@@ -48,7 +48,7 @@ func main() {
 	st.TestSort("Merge Sort MergeSortBUAdvance", ms.MergeSortBUAdvance, arr1, n)
 	st.TestSort("Quick Sort", qs.QuickSort, arr2, n)
 	st.TestSort("Quick Sort advance", qs_advance.QuickSort, arr3, n)
-	st.TestSort("Quick Sort 2 part", qs_2_part.QuickSort, arr4, n)
+	st.TestSort("Quick Sort 2 part", qs_2_ways.QuickSort, arr4, n)
 
 	fmt.Println("-------------")
 	// 测试3 测试存在包含大量相同元素的数组
@@ -64,6 +64,6 @@ func main() {
 	st.TestSort("Merge Sort MergeSortBUAdvance", ms.MergeSortBUAdvance, arr1, n)
 	st.TestSort("Quick Sort", qs.QuickSort, arr2, n)
 	st.TestSort("Quick Sort advance", qs_advance.QuickSort, arr3, n)
-	st.TestSort("Quick Sort 2 part", qs_2_part.QuickSort, arr4, n)
+	st.TestSort("Quick Sort 2 part", qs_2_ways.QuickSort, arr4, n)
 
 }

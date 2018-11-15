@@ -9,18 +9,18 @@ import (
 双路快速排序法
 // 调用双路快速排序的partition
  */
-type QuickSortTwoPartition struct {
+type QuickSortTwoWays struct {
 	myrand *rand.Rand  //随机数生成器
 }
 /**
 交换数组或切片的两个元素
 */
-func (e *QuickSortTwoPartition) swap(a, b *int) {
+func (e *QuickSortTwoWays) swap(a, b *int) {
 	*a, *b = *b, *a
 }
 // 对arr[l...r]部分进行partition操作
 // 返回p, 使得arr[l...p-1] < arr[p] ; arr[p+1...r] > arr[p]
-func (e *QuickSortTwoPartition)__partition(arr []int, l,r int) int  {
+func (e *QuickSortTwoWays)__partition(arr []int, l,r int) int  {
 	// 随机在arr[l...r]的范围中, 选择一个数值作为标定点pivot
 	e.swap( &arr[l] , &arr[e.myrand.Int()%(r-l+1)+l] );
 
@@ -68,7 +68,7 @@ func (e *QuickSortTwoPartition)__partition(arr []int, l,r int) int  {
 }
 
 // 对arr[l...r]部分进行快速排序
-func (e *QuickSortTwoPartition)__quickSort(arr []int, l,r int)  {
+func (e *QuickSortTwoWays)__quickSort(arr []int, l,r int)  {
 
 	// 对于小规模数组, 使用插入排序进行优化
 	if l >= r{
@@ -81,7 +81,7 @@ func (e *QuickSortTwoPartition)__quickSort(arr []int, l,r int)  {
 	e.__quickSort(arr,l,p-1)
 	e.__quickSort(arr,p+1,r)
 }
-func (e *QuickSortTwoPartition)QuickSort(arr []int, n int)  {
+func (e *QuickSortTwoWays)QuickSort(arr []int, n int)  {
 	e.myrand = rand.New(rand.NewSource(time.Now().UnixNano()))
 	e.__quickSort(arr,0,n-1)
 }
