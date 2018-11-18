@@ -26,6 +26,33 @@ func NewMaxHeap(capacity int) *MaxHeap {
 	count:0,
 	capacity:capacity}
 }
+
+//Heapify
+// 构造函数, 通过一个给定数组创建一个最大堆
+// 该构造堆的过程, 时间复杂度为O(n)
+func NewMaxHeapByArray(arr []int,n int) *MaxHeap  {
+
+	// 索引从1开始
+	o := &MaxHeap{data:make([]int,n+1,n+1),
+		count:0,
+		capacity:n}
+
+		//更新堆元素
+		for i:=0;i<n;i++{
+			o.data[i+1] = arr[i]
+		}
+		//更新计数器
+		o.count=n
+
+		//从不是子节点开始,进行shiftDown
+		for i:= o.count/2 ;i>=1;i--{
+			o.shiftDown(i)
+		}
+
+
+	return o
+}
+
 // 返回堆中的元素个数
 func (e *MaxHeap)Size() int  {
 	return e.count
