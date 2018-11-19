@@ -11,48 +11,6 @@ type MaxHeap struct {
 	capacity int //容量
 }
 
-// 构造函数, 构造一个空堆, 可容纳capacity个元素
-
-//在Go语言中没有构造函数的概念,
-// 对象的创建通常交由一个全局的创建函数来完成,
-// 以NewXXX来命令,表示"构造函数":
-func NewMaxHeap(capacity int) *MaxHeap {
-	//在创建slice时第一个参数用于
-	// 确定初始化该slice的大小该slice中的值为零值，
-	// 第三个参数用于确定该slice的长度
-	//例如: MaxHeap, make([]int,2,5)  => &{[0 0] 0}
-	//这里全部设置为 0
-	return &MaxHeap{data:make([]int,capacity+1,capacity+1),
-	count:0,
-	capacity:capacity}
-}
-
-//Heapify
-// 构造函数, 通过一个给定数组创建一个最大堆
-// 该构造堆的过程, 时间复杂度为O(n)
-func NewMaxHeapByArray(arr []int,n int) *MaxHeap  {
-
-	// 索引从1开始
-	o := &MaxHeap{data:make([]int,n+1,n+1),
-		count:0,
-		capacity:n}
-
-		//更新堆元素
-		for i:=0;i<n;i++{
-			o.data[i+1] = arr[i]
-		}
-		//更新计数器
-		o.count=n
-
-		//从不是子节点开始,进行shiftDown
-		for i:= o.count/2 ;i>=1;i--{
-			o.shiftDown(i)
-		}
-
-
-	return o
-}
-
 // 返回堆中的元素个数
 func (e *MaxHeap)Size() int  {
 	return e.count
@@ -133,6 +91,79 @@ func (e *MaxHeap)TestPrint()  {
 	fmt.Println(e.data)
 }
 
+
+
+// 构造函数, 构造一个空堆, 可容纳capacity个元素
+
+//在Go语言中没有构造函数的概念,
+// 对象的创建通常交由一个全局的创建函数来完成,
+// 以NewXXX来命令,表示"构造函数":
+func NewMaxHeap(capacity int) *MaxHeap {
+	//在创建slice时第一个参数用于
+	// 确定初始化该slice的大小该slice中的值为零值，
+	// 第三个参数用于确定该slice的长度
+	//例如: MaxHeap, make([]int,2,5)  => &{[0 0] 0}
+	//这里全部设置为 0
+	return &MaxHeap{data:make([]int,capacity+1,capacity+1),
+		count:0,
+		capacity:capacity}
+}
+
+//Heapify
+// 构造函数, 通过一个给定数组创建一个最大堆
+// 该构造堆的过程, 时间复杂度为O(n)
+func NewMaxHeapByArray(arr []int,n int) *MaxHeap  {
+
+	// 索引从1开始
+	o := &MaxHeap{data:make([]int,n+1,n+1),
+		count:0,
+		capacity:n}
+
+	//更新堆元素
+	for i:=0;i<n;i++{
+		o.data[i+1] = arr[i]
+	}
+	//更新计数器
+	o.count=n
+
+	//从不是子节点开始,进行shiftDown
+	for i:= o.count/2 ;i>=1;i--{
+		o.shiftDown(i)
+	}
+
+
+	return o
+}
+
+// heapSort1, 将所有的元素依次添加到堆中, 在将所有元素从堆中依次取出来, 即完成了排序
+// 无论是创建堆的过程, 还是从堆中依次取出元素的过程, 时间复杂度均为O(nlogn)
+// 整个堆排序的整体时间复杂度为O(nlogn)
+func HeapSort1(arr []int,n int)  {
+	maxheap := NewMaxHeap(n)
+
+	//创建堆
+	for i := 0; i < n; i++ {
+		maxheap.Insert(arr[i])
+	}
+
+	//从堆中依次取出元素
+	for i:=n-1;i>=0;i--{
+		arr[i] = maxheap.ExtractMax()
+	}
+}
+// heapSort2, 借助我们的heapify过程创建堆
+// 此时, 创建堆的过程时间复杂度为O(n), 将所有元素依次从堆中取出来, 实践复杂度为O(nlogn)
+// 堆排序的总体时间复杂度依然是O(nlogn), 但是比上述heapSort1性能更优, 因为创建堆的性能更优
+func HeapSort2(arr []int,n int)  {
+
+
+	maxheap := NewMaxHeapByArray(arr,n)
+
+	//从堆中依次取出元素
+	for i:=n-1;i>=0;i--{
+		arr[i] = maxheap.ExtractMax()
+	}
+}
 
 
 
