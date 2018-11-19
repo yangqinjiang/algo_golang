@@ -34,6 +34,7 @@ func (e *MaxHeap)shiftDown(k int)  {
 	for 2*k <= e.count{
 		j := 2*k//在此轮循环中,data[k]和data[j]交换位置
 		if j+1 <= e.count && e.data[j+1] > e.data[j]{
+			//左右子节点最大的一个
 			j++
 		}
 		// data[j] 是 data[2*k]和data[2*k+1]中的最大值
@@ -51,6 +52,7 @@ func (e *MaxHeap)shiftDown2(n,k int)  {
 	for 2*k+1 < n{
 		j := 2*k+1//在此轮循环中,data[k]和data[j]交换位置
 		if j+1 < n && e.data[j+1] > e.data[j]{
+			//左右子节点最大的一个
 			j++
 		}
 		// data[j] 是 data[2*k]和data[2*k+1]中的最大值
@@ -71,6 +73,7 @@ func (e *MaxHeap)shiftDown3(n,k int)  {
 	for 2*k+1 < n{
 		j := 2*k+1//在此轮循环中,data[k]和data[j]交换位置
 		if j+1 < n && e.data[j+1] > e.data[j]{
+			//左右子节点最大的一个
 			j++
 		}
 		// data[j] 是 data[2*k]和data[2*k+1]中的最大值
