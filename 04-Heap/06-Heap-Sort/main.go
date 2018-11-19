@@ -25,6 +25,8 @@ func main() {
 	arr4 := st.CopyIntArray(arr1, n)
 	arr5 := st.CopyIntArray(arr1, n)
 	arr6 := st.CopyIntArray(arr1, n)
+	arr7 := st.CopyIntArray(arr1, n)
+	arr8 := st.CopyIntArray(arr1, n)
 
 	st.TestSort("Merge Sort MergeSortBUAdvance", ms.MergeSortBUAdvance, arr1, n)
 	st.TestSort("Quick Sort advance", qs_advance.QuickSort, arr2, n)
@@ -32,6 +34,8 @@ func main() {
 	st.TestSort("Quick Sort 3 ways", qs_3_ways.QuickSort, arr4, n)
 	st.TestSort("Heap Sort 1", core.HeapSort1, arr5, n)
 	st.TestSort("Heap Sort 2 Heapify", core.HeapSort2, arr6, n)
+	st.TestSort("Heap Sort 3", core.HeapSort3, arr7, n)
+	st.TestSort("Heap Sort 4", core.HeapSort4, arr8, n)
 
 	fmt.Println("-------------")
 
@@ -48,6 +52,8 @@ func main() {
 	arr4 = st.CopyIntArray(arr1, n)
 	arr5 = st.CopyIntArray(arr1, n)
 	arr6 = st.CopyIntArray(arr1, n)
+	arr7 = st.CopyIntArray(arr1, n)
+	arr8 = st.CopyIntArray(arr1, n)
 
 	st.TestSort("Merge Sort MergeSortBUAdvance", ms.MergeSortBUAdvance, arr1, n)
 	st.TestSort("Quick Sort advance", qs_advance.QuickSort, arr2, n)
@@ -55,6 +61,8 @@ func main() {
 	st.TestSort("Quick Sort 3 ways", qs_3_ways.QuickSort, arr4, n)
 	st.TestSort("Heap Sort 1", core.HeapSort1, arr5, n)
 	st.TestSort("Heap Sort 2 Heapify", core.HeapSort2, arr6, n)
+	st.TestSort("Heap Sort 3", core.HeapSort3, arr7, n)
+	st.TestSort("Heap Sort 4", core.HeapSort4, arr8, n)
 
 	fmt.Println("-------------")
 
@@ -67,6 +75,8 @@ func main() {
 	arr4 = st.CopyIntArray(arr1, n)
 	arr5 = st.CopyIntArray(arr1, n)
 	arr6 = st.CopyIntArray(arr1, n)
+	arr7 = st.CopyIntArray(arr1, n)
+	arr8 = st.CopyIntArray(arr1, n)
 
 	st.TestSort("Merge Sort MergeSortBUAdvance", ms.MergeSortBUAdvance, arr1, n)
 	// 这种情况下, 普通的QuickSort退化为O(n^2)的算法, 不做测试
@@ -75,6 +85,8 @@ func main() {
 	st.TestSort("Quick Sort 3 ways", qs_3_ways.QuickSort, arr4, n)
 	st.TestSort("Heap Sort 1", core.HeapSort1, arr5, n)
 	st.TestSort("Heap Sort 2 Heapify", core.HeapSort2, arr6, n)
+	st.TestSort("Heap Sort 3", core.HeapSort3, arr7, n)
+	st.TestSort("Heap Sort 4", core.HeapSort4, arr8, n)
 
 	fmt.Println("-------------")
 }

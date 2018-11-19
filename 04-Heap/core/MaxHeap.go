@@ -45,6 +45,44 @@ func (e *MaxHeap)shiftDown(k int)  {
 		k=j
 	}
 }
+// 原始的shiftDown过程
+func (e *MaxHeap)shiftDown2(n,k int)  {
+
+	for 2*k+1 < n{
+		j := 2*k+1//在此轮循环中,data[k]和data[j]交换位置
+		if j+1 < n && e.data[j+1] > e.data[j]{
+			j++
+		}
+		// data[j] 是 data[2*k]和data[2*k+1]中的最大值
+		if e.data[k] >= e.data[j] {
+			break
+		}
+
+		e.swap(&e.data[k],&e.data[j])
+		k=j
+	}
+}
+// 优化的shiftDown过程, 使用赋值的方式取代不断的swap,
+// 该优化思想和我们之前对插入排序进行优化的思路是一致的
+func (e *MaxHeap)shiftDown3(n,k int)  {
+
+	v:=e.data[k]
+
+	for 2*k+1 < n{
+		j := 2*k+1//在此轮循环中,data[k]和data[j]交换位置
+		if j+1 < n && e.data[j+1] > e.data[j]{
+			j++
+		}
+		// data[j] 是 data[2*k]和data[2*k+1]中的最大值
+		if v >= e.data[j] {
+			break
+		}
+		e.data[k] = e.data[j]
+		k=j
+	}
+
+	e.data[k] = v
+}
 
 /**
 交换数组或切片的两个元素
@@ -163,6 +201,75 @@ func HeapSort2(arr []int,n int)  {
 	for i:=n-1;i>=0;i--{
 		arr[i] = maxheap.ExtractMax()
 	}
+}
+
+/**
+不使用一个额外的最大堆,直接在原数组上进行原地的堆排序
+ */
+func HeapSort3(arr []int,n int)  {
+	// 注意，此时我们的堆是从0开始索引的
+	// 从(最后一个元素的索引-1)/2开始
+	// 最后一个元素的索引 = n-1
+
+
+	// 索引从1开始
+	o := &MaxHeap{data:make([]int,n,n),
+		count:0,
+		capacity:n}
+
+	//更新堆元素
+	o.data = arr
+
+	//更新计数器
+	o.count=n
+
+
+	//从不是子节点开始,进行shiftDown
+	for i:=(n-1-1)/2;i>=0;i--{
+		o.shiftDown2(n,i)
+	}
+
+	for i:=n-1;i>0;i--{
+		//交换最大值到最后的位置
+		o.swap(&o.data[0],&o.data[i])
+		o.shiftDown2(i,0)
+	}
+
+}
+
+
+/**
+不使用一个额外的最大堆,直接在原数组上进行原地的堆排序
+ */
+func HeapSort4(arr []int,n int)  {
+	// 注意，此时我们的堆是从0开始索引的
+	// 从(最后一个元素的索引-1)/2开始
+	// 最后一个元素的索引 = n-1
+
+
+	// 索引从1开始
+	o := &MaxHeap{data:make([]int,n,n),
+		count:0,
+		capacity:n}
+
+	//更新堆元素
+	o.data = arr
+
+	//更新计数器
+	o.count=n
+
+
+	//从不是子节点开始,进行shiftDown
+	for i:=(n-1-1)/2;i>=0;i--{
+		o.shiftDown3(n,i)
+	}
+
+	for i:=n-1;i>0;i--{
+		//交换最大值到最后的位置
+		o.swap(&o.data[0],&o.data[i])
+		o.shiftDown3(i,0)
+	}
+
 }
 
 
