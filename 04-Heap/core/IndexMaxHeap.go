@@ -2,7 +2,6 @@ package core
 
 import (
 	"fmt"
-	"github.com/smartystreets/assertions"
 )
 
 type IndexMaxHeap struct {
@@ -60,8 +59,8 @@ func (e *IndexMaxHeap) swap(a, b *int) {
 func (e *IndexMaxHeap)Insert(i,item int)  {
 
 	//边界
-	assertions.ShouldBeLessThanOrEqualTo(e.count + 1, e.capacity)
-	assertions.ShouldBeTrue(i+1>=1 && i+1 <= e.capacity)
+	Assert(e.count + 1<= e.capacity)
+	Assert(i+1>=1 && i+1 <= e.capacity)
 
 	i+=1
 	e.data[i] =  item
@@ -72,7 +71,7 @@ func (e *IndexMaxHeap)Insert(i,item int)  {
 }
 // 从最大索引堆中取出堆顶元素, 即索引堆中所存储的最大数据
 func (e *IndexMaxHeap)ExtractMax() int  {
-	assertions.ShouldBeTrue(e.count > 0)
+	Assert(e.count > 0)
 	ret := e.data[e.indexes[1]] //读取第一个,是最大值
 
 	//交换最后和第一个元素,使得不是最大堆
@@ -87,7 +86,7 @@ func (e *IndexMaxHeap)ExtractMax() int  {
 }
 // 从最大索引堆中取出堆顶元素的索引
 func (e *IndexMaxHeap)ExtractMaxIndex()  int{
-	assertions.ShouldBeTrue(e.count > 0)
+	Assert(e.count > 0)
 	ret := e.indexes[1] //读取第一个,是最大值
 
 	//交换最后和第一个元素,使得不是最大堆
@@ -101,17 +100,18 @@ func (e *IndexMaxHeap)ExtractMaxIndex()  int{
 }
 // 获取最大索引堆中的堆顶元素
 func (e *IndexMaxHeap)GetMax() int  {
-	assertions.ShouldBeTrue(e.count > 0)
+	Assert(e.count > 0)
 	return e.data[e.indexes[1]]
 }
 // 获取最大索引堆中的堆顶元素的索引
 func (e *IndexMaxHeap)GetMaxIndex() int {
-	assertions.ShouldBeTrue(e.count > 0)
+
+	Assert(e.count>0)
 	return e.indexes[1] -1
 }
 // 获取最大索引堆中索引为i的元素
 func (e *IndexMaxHeap)GetItem(i int) int  {
-	assertions.ShouldBeTrue(i+1 >= 1 && i+1 <= e.capacity)
+	Assert(i+1 >= 1 && i+1 <= e.capacity)
 	return e.data[i+1]
 }
 // 将最大索引堆中索引为i的元素修改为newItem
@@ -159,7 +159,9 @@ func NewIndexMaxHeap(capacity int) *IndexMaxHeap {
 		count:0,
 		capacity:capacity}
 }
-
+// 使用最大索引堆进行堆排序, 来验证我们的最大索引堆的正确性
+// 最大索引堆的主要作用不是用于排序, 我们在这里使用排序只是为了验证我们的最大索引堆实现的正确性
+// 在后续的图论中, 无论是最小生成树算法, 还是最短路径算法, 我们都需要使用索引堆进行优化:)
 func HeapSortUsingIndexMaxHeap(arr []int,n int)  {
 	maxheap := NewIndexMaxHeap(n)
 
@@ -172,6 +174,12 @@ func HeapSortUsingIndexMaxHeap(arr []int,n int)  {
 	//从堆中依次取出元素
 	for i:=n-1;i>=0;i--{
 		arr[i] = maxheap.ExtractMax()
+	}
+}
+
+func Assert(b bool)  {
+	if(!b){
+		panic("出错了")
 	}
 }
 

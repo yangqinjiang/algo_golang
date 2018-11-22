@@ -2,7 +2,6 @@ package core
 
 import (
 	"fmt"
-	"github.com/smartystreets/assertions"
 )
 
 type MaxHeap struct {
@@ -98,7 +97,7 @@ func (e *MaxHeap) swap(a, b *int) {
 func (e *MaxHeap)Insert(item int)  {
 
 	//边界
-	assertions.ShouldBeLessThanOrEqualTo(e.count + 1, e.capacity)
+	Assert(e.count + 1<= e.capacity)
 
 
 	e.data[e.count + 1] = item
@@ -107,7 +106,7 @@ func (e *MaxHeap)Insert(item int)  {
 }
 // 从最大堆中取出堆顶元素, 即堆中所存储的最大数据
 func (e *MaxHeap)ExtractMax() int  {
-	assertions.ShouldBeTrue(e.count > 0)
+	Assert(e.count > 0)
 	ret := e.data[1] //读取第一个,是最大值
 
 	//交换最后和第一个元素,使得不是最大堆
@@ -122,7 +121,7 @@ func (e *MaxHeap)ExtractMax() int  {
 }
 
 func (e *MaxHeap)GetMax() int  {
-	assertions.ShouldBeTrue(e.count > 0)
+	Assert(e.count > 0)
 	return e.data[1]
 }
 

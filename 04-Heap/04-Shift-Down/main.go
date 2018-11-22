@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
-	"github.com/smartystreets/assertions"
 )
 
 func main() {
@@ -37,7 +36,7 @@ func main() {
 	fmt.Println()
 	// 确保arr数组是从大到小排列的
 	for i:=1 ;i<n;i++{
-		assertions.ShouldBeTrue(arr[i-1] >= arr[i])
+		core.Assert(arr[i-1] >= arr[i])
 	}
 
 }
