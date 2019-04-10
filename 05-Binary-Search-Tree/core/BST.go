@@ -1,5 +1,5 @@
 package core
-
+// 二分搜索树中的节点为私有的结构体, 外界不需要了解二分搜索树节点的具体实现
 type node struct {
 	key string
 	value int
