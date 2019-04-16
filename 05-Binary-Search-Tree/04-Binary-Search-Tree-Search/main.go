@@ -3,6 +3,7 @@ package main
 import (
 	core2 "algo_golang/04-Heap/core"
 	"algo_golang/05-Binary-Search-Tree/core"
+	"fmt"
 )
 
 func main() {
@@ -23,5 +24,7 @@ func main() {
 
 	_, err = bst.Search(4)
 	core2.Assert(nil != err)
+
+	fmt.Println(core.FirstCharacterIndex("bcdefga",0));
 
 }
