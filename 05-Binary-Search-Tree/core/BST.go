@@ -1,6 +1,9 @@
 package core
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 // 二分搜索树中的节点为私有的结构体, 外界不需要了解二分搜索树节点的具体实现
 type node struct {
@@ -93,6 +96,54 @@ func (bst *BST) search(node *node, key string) (int, error) {
 	}
 }
 
+//二分搜索树的前序遍历
+func (bst *BST) PreOrder()  {
+	bst.preOrder(bst.root)
+}
+func (bst *BST) preOrder(node *node)  {
+	if nil != node{
+		fmt.Print(node.key," ")
+		bst.preOrder(node.left)
+		bst.preOrder(node.right)
+	}
+}
+//二分搜索树的中序遍历
+func (bst *BST) InOrder()  {
+	bst.inOrder(bst.root)
+}
+func (bst *BST) inOrder(node *node)  {
+	if nil != node{
+		bst.inOrder(node.left)
+		fmt.Print(node.key," ")
+		bst.inOrder(node.right)
+	}
+}
+
+//二分搜索树的中序遍历
+func (bst *BST) PostOrder()  {
+	bst.postOrder(bst.root)
+}
+func (bst *BST) postOrder(node *node)  {
+	if nil != node{
+		bst.postOrder(node.left)
+		bst.postOrder(node.right)
+		fmt.Print(node.key," ")
+	}
+}
+
+// 释放以node为根的二分搜索树的所有节点
+// 采用后续遍历的递归算法
+func (bst *BST)Destroy()  {
+	bst.destroy(bst.root)
+}
+func (bst *BST)destroy(node *node)  {
+	if nil != node{
+		bst.destroy(node.left)
+		bst.destroy(node.right)
+		node = nil //删除本节点
+		bst.count --
+	}
+}
 // 构造函数, 默认构造一棵空二分搜索树
 func NewBST() *BST {
 	return &BST{root: nil, count: 0}
