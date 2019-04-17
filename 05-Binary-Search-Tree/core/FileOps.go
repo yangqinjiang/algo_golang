@@ -28,7 +28,7 @@ func LowerS(s string) string  {
 }
 // 读取文件名称为filename中的内容，并将其中包含的所有词语放进words中
 func ReadFile(filename string) ([]string,error) {
-	fmt.Println("read file",filename)
+
 	// 文件读取
 	//line := "";
 	contents := ""
