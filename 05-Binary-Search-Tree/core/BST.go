@@ -1,6 +1,7 @@
 package core
 
 import (
+	"algo_golang/the3rd/queue"
 	"errors"
 	"fmt"
 )
@@ -45,6 +46,54 @@ func (bst *BST) Contain(key string) bool {
 // 在二分搜索树中搜索键key所对应的值。如果这个值不存在, 则返回NULL
 func (bst *BST) Search(key string) (int, error) {
 	return bst.search(bst.root, key)
+}
+
+//二分搜索树的前序遍历
+func (bst *BST) PreOrder() {
+	bst.preOrder(bst.root)
+}
+
+//二分搜索树的中序遍历
+func (bst *BST) InOrder() {
+	bst.inOrder(bst.root)
+}
+
+//二分搜索树的中序遍历
+func (bst *BST) PostOrder() {
+	bst.postOrder(bst.root)
+}
+
+//二分搜索树的层序遍历
+func (bst *BST) LevelOrder() {
+	//使用队列来操作
+	q := queue.New()
+	q.Add(bst.root)
+	for 0 != q.Length() { //不为空
+
+		n, ok := q.Remove().(*node) //,转换成 *node, 通过断言实现类型转换
+
+		if !ok {
+			fmt.Println("node 转换失败", ok, n)
+			continue
+		}
+		fmt.Print(n.key, " ")
+
+		//先判断左子树, 再判断右子树
+		//有左子树,则入队列
+		if nil != n.left {
+			q.Add(n.left)
+		}
+		//有右子树,则入队列
+		if nil != n.right {
+			q.Add(n.right)
+		}
+	}
+}
+
+// 释放以node为根的二分搜索树的所有节点
+// 采用后续遍历的递归算法
+func (bst *BST) Destroy() {
+	bst.destroy(bst.root)
 }
 
 ///----------------private-------------------
@@ -96,54 +145,39 @@ func (bst *BST) search(node *node, key string) (int, error) {
 	}
 }
 
-//二分搜索树的前序遍历
-func (bst *BST) PreOrder()  {
-	bst.preOrder(bst.root)
-}
-func (bst *BST) preOrder(node *node)  {
-	if nil != node{
-		fmt.Print(node.key," ")
+func (bst *BST) preOrder(node *node) {
+	if nil != node {
+		fmt.Print(node.key, " ")
 		bst.preOrder(node.left)
 		bst.preOrder(node.right)
 	}
 }
-//二分搜索树的中序遍历
-func (bst *BST) InOrder()  {
-	bst.inOrder(bst.root)
-}
-func (bst *BST) inOrder(node *node)  {
-	if nil != node{
+
+func (bst *BST) inOrder(node *node) {
+	if nil != node {
 		bst.inOrder(node.left)
-		fmt.Print(node.key," ")
+		fmt.Print(node.key, " ")
 		bst.inOrder(node.right)
 	}
 }
 
-//二分搜索树的中序遍历
-func (bst *BST) PostOrder()  {
-	bst.postOrder(bst.root)
-}
-func (bst *BST) postOrder(node *node)  {
-	if nil != node{
+func (bst *BST) postOrder(node *node) {
+	if nil != node {
 		bst.postOrder(node.left)
 		bst.postOrder(node.right)
-		fmt.Print(node.key," ")
+		fmt.Print(node.key, " ")
 	}
 }
 
-// 释放以node为根的二分搜索树的所有节点
-// 采用后续遍历的递归算法
-func (bst *BST)Destroy()  {
-	bst.destroy(bst.root)
-}
-func (bst *BST)destroy(node *node)  {
-	if nil != node{
+func (bst *BST) destroy(node *node) {
+	if nil != node {
 		bst.destroy(node.left)
 		bst.destroy(node.right)
 		node = nil //删除本节点
-		bst.count --
+		bst.count--
 	}
 }
+
 // 构造函数, 默认构造一棵空二分搜索树
 func NewBST() *BST {
 	return &BST{root: nil, count: 0}
