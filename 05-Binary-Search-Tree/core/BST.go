@@ -90,6 +90,34 @@ func (bst *BST) LevelOrder() {
 	}
 }
 
+//寻找二分搜索树最小的键值
+func (bst *BST) Minimum() string {
+	if 0 == bst.count{
+		return ""
+	}
+	minNode := bst.minimun(bst.root)
+	return minNode.key
+}
+//寻找二分搜索树最大的键值
+func (bst *BST) Maximum() (string) {
+	if 0 == bst.count{
+		return ""
+	}
+	maxNode := bst.maximun(bst.root)
+	return maxNode.key
+}
+//从二分搜索树中删除最小值所在节点
+func (bst *BST)RemoveMin()  {
+	if(bst.root != nil){
+		bst.root = bst.removeMin(bst.root)
+	}
+}
+//从二分搜索树中删除最大值所在节点
+func (bst *BST)RemoveMax()  {
+	if(bst.root != nil){
+		bst.root = bst.removeMax(bst.root)
+	}
+}
 // 释放以node为根的二分搜索树的所有节点
 // 采用后续遍历的递归算法
 func (bst *BST) Destroy() {
@@ -167,6 +195,40 @@ func (bst *BST) postOrder(node *node) {
 		bst.postOrder(node.right)
 		fmt.Print(node.key, " ")
 	}
+}
+// 返回以node为根的二分搜索树的最小键值所在的节点
+func (bst *BST)minimun(n *node) *node {
+	if n.left == nil{
+		return n
+	}
+	return bst.minimun(n.left)
+}
+// 返回以node为根的二分搜索树的最大键值所在的节点
+func (bst *BST)maximun(n *node) *node {
+	if n.right == nil{
+		return n
+	}
+	return bst.maximun(n.right)
+}
+// 删除掉以node为根的二分搜索树中的最小节点
+// 返回删除节点后新的二分搜索树的根
+func (bst *BST)removeMin(n *node) *node {
+	if nil == n.left{
+		bst.count --
+		return n.right
+	}
+	n.left = bst.removeMin(n.left)
+	return n
+}
+// 删除掉以node为根的二分搜索树中的最大节点
+// 返回删除节点后新的二分搜索树的根
+func (bst *BST)removeMax(n *node) *node {
+	if nil == n.right{
+		bst.count --
+		return n.left
+	}
+	n.right = bst.removeMax(n.right)
+	return n
 }
 
 func (bst *BST) destroy(node *node) {
