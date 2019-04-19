@@ -17,6 +17,9 @@ type node struct {
 func NewNode(key string, value int) *node {
 	return &node{key: key, value: value, left: nil, right: nil}
 }
+func NewNode2(n *node) *node {
+	return &node{key: n.key, value: n.value, left: n.left, right: n.right}
+}
 
 type BST struct {
 	root  *node //根节点
@@ -117,6 +120,10 @@ func (bst *BST)RemoveMax()  {
 	if(bst.root != nil){
 		bst.root = bst.removeMax(bst.root)
 	}
+}
+// 从二分搜索树中删除键值为key的节点
+func (bst *BST)Remove(key string)  {
+	bst.root = bst.remove(bst.root,key)
 }
 // 释放以node为根的二分搜索树的所有节点
 // 采用后续遍历的递归算法
@@ -230,7 +237,46 @@ func (bst *BST)removeMax(n *node) *node {
 	n.right = bst.removeMax(n.right)
 	return n
 }
+// 删除掉以node为根的二分搜索树中键值为key的节点, 递归算法
+// 返回删除节点后新的二分搜索树的根
+func (bst *BST)remove(node *node,key string) (*node) {
+	if nil == node{
+		return nil
+	}
+	if key < node.key{ //删左子树的元素
+		node.left = bst.remove(node.left,key)
+		return  node
+	}else if key > node.key{//删右子树的元素
+		node.right = bst.remove(node.right,key)
+		return node
+	}else{// key == node.key // 找到此节点
+		//待删除节点左子树为空的情况
+		if nil == node.left{
+			bst.count --
+			return node.right
+		}
 
+		//待删除节点右子树为空的情况
+		if nil == node.right{
+			bst.count --
+			return node.left
+		}
+
+		//待删除节点左右子树都不为空的情况
+
+		//找到 比 待删除节点 [大] 的 [最小节点],即待删除节点右子树的最小节点
+		// 用这个节点顶替待删除节点的位置
+		mini := bst.minimun(node.right)
+		successor := NewNode2(mini)
+		bst.count ++
+
+		successor.right = bst.removeMin(node.right)
+		successor.left = node.left
+		// delete node
+		bst.count --
+		return successor
+	}
+}
 func (bst *BST) destroy(node *node) {
 	if nil != node {
 		bst.destroy(node.left)
