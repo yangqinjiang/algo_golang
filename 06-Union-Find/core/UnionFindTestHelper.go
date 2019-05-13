@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+var seed  int64 = 100
 type UnionFindTestHelper struct {
 
 }
@@ -14,7 +15,7 @@ func (this *UnionFindTestHelper)TestUF1(n int)   {
 	uf := NewUnionFind(n)
 
 	startTime := time.Now()
-	r := rand.New(rand.NewSource(100))
+	r := rand.New(rand.NewSource(seed))
 	//进行n次操作,每次随机选择两个元素进行合并操作
 	for i:=0;i<n ;i++  {
 		a := r.Int()%n
@@ -41,7 +42,7 @@ func (this *UnionFindTestHelper)TestUF2(n int)   {
 	uf := NewUnionFind2(n)
 
 	startTime := time.Now()
-	r := rand.New(rand.NewSource(100))
+	r := rand.New(rand.NewSource(seed))
 	//进行n次操作,每次随机选择两个元素进行合并操作
 	for i:=0;i<n ;i++  {
 		a := r.Int()%n
@@ -60,5 +61,31 @@ func (this *UnionFindTestHelper)TestUF2(n int)   {
 
 	// 打印输出对这2n个操作的耗时
 	fmt.Printf("UF2 2*n=%d,took %f%s",2*n, elapsed.Seconds(), "s \n")
+
+}
+// 测试第三版本的并查集, 测试元素个数为n
+func (this *UnionFindTestHelper)TestUF3(n int)   {
+	uf := NewUnionFind3(n)
+
+	startTime := time.Now()
+	r := rand.New(rand.NewSource(seed))
+	//进行n次操作,每次随机选择两个元素进行合并操作
+	for i:=0;i<n ;i++  {
+		a := r.Int()%n
+		b := r.Int()%n
+		uf.UnionElements(a,b)
+	}
+	//再进行n次操作,每次随机选择两个元素,, 查询他们是否同属一个集合
+	for i:=0;i<n ;i++  {
+		a := r.Int()%n
+		b := r.Int()%n
+		uf.IsConnected(a,b)
+
+	}
+	elapsed := time.Since(startTime)
+
+
+	// 打印输出对这2n个操作的耗时
+	fmt.Printf("UF3 2*n=%d,took %f%s",2*n, elapsed.Seconds(), "s \n")
 
 }
