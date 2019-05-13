@@ -115,3 +115,56 @@ func (this *UnionFindTestHelper)TestUF4(n int)   {
 	fmt.Printf("UF4 Rank 2*n=%d,took %f%s",2*n, elapsed.Seconds(), "s \n")
 
 }
+
+// 路径压缩
+func (this *UnionFindTestHelper)TestUF5(n int)   {
+	uf := NewUnionFind5(n)
+
+	startTime := time.Now()
+	r := rand.New(rand.NewSource(seed))
+	//进行n次操作,每次随机选择两个元素进行合并操作
+	for i:=0;i<n ;i++  {
+		a := r.Int()%n
+		b := r.Int()%n
+		uf.UnionElements(a,b)
+	}
+	//再进行n次操作,每次随机选择两个元素,, 查询他们是否同属一个集合
+	for i:=0;i<n ;i++  {
+		a := r.Int()%n
+		b := r.Int()%n
+		uf.IsConnected(a,b)
+
+	}
+	elapsed := time.Since(startTime)
+
+
+	// 打印输出对这2n个操作的耗时
+	fmt.Printf("UF5 Path-Compression 2*n=%d,took %f%s",2*n, elapsed.Seconds(), "s \n")
+
+}
+// 路径压缩-- 递归
+func (this *UnionFindTestHelper)TestUF6(n int)   {
+	uf := NewUnionFind6(n)
+
+	startTime := time.Now()
+	r := rand.New(rand.NewSource(seed))
+	//进行n次操作,每次随机选择两个元素进行合并操作
+	for i:=0;i<n ;i++  {
+		a := r.Int()%n
+		b := r.Int()%n
+		uf.UnionElements(a,b)
+	}
+	//再进行n次操作,每次随机选择两个元素,, 查询他们是否同属一个集合
+	for i:=0;i<n ;i++  {
+		a := r.Int()%n
+		b := r.Int()%n
+		uf.IsConnected(a,b)
+
+	}
+	elapsed := time.Since(startTime)
+
+
+	// 打印输出对这2n个操作的耗时
+	fmt.Printf("UF6 Path-Compression-recursion 2*n=%d,took %f%s 递归消耗不少时间 \n",2*n, elapsed.Seconds(), "s")
+
+}
