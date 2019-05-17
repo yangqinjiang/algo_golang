@@ -12,9 +12,15 @@ type DenseGraph struct {
 
 func NewDenseGraph(n int,directed bool) *DenseGraph  {
 	core.Assert( n >= 0)
-	// g初始化为n*n的布尔矩阵, 每一个g[i][j]均为false, 表示没有任和边
+
 	// m:0  // 初始化没有任何边
-	return &DenseGraph{n:n,m:0,directed:directed,g: make([][]bool,n)}
+	// g初始化为n*n的布尔矩阵, 每一个g[i][j]均为false, 表示没有任和边
+
+	_g := make([][]bool,n)
+	for i:=0;i<n ;i++  {
+		_g[i] = make([]bool,n)//false为boolean型变量的默认值
+	}
+	return &DenseGraph{n:n,m:0,directed:directed,g:_g }
 }
 // 返回节点个数
 func (this *DenseGraph)V() int  {
