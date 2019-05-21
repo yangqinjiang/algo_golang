@@ -46,3 +46,38 @@ func (this *SparseGraph)hasEdge(v,w int) bool {
 	}
 	return false
 }
+// 邻边迭代器, 传入一个图和一个顶点,
+// 迭代在这个图中和这个顶点向连的所有顶点
+type AdjIteratorSparseGraph struct {
+	g *SparseGraph// 图G的引用
+	v ,index int
+}
+//邻边迭代器
+func NewAdjIteratorSparseGraph(g *SparseGraph,v int) *AdjIteratorSparseGraph{
+	core.Assert( v >= 0 && v <g.n)
+	return &AdjIteratorSparseGraph{v:v,index:-1,g:g}
+}
+// 返回图G中与顶点v相连接的第一个顶点
+func (this *AdjIteratorSparseGraph)Begin() int  {
+
+	this.index = 0
+	if len(this.g.g[this.v]) > 0{
+		return this.g.g[this.v][this.index]
+	}
+	// 若没有顶点和v相连接, 则返回-1
+	return -1
+}
+// 返回图G中与顶点v相连接的下一个顶点
+func (this *AdjIteratorSparseGraph)Next() int  {
+	this.index ++
+	if this.index < len(this.g.g[this.v]){
+		return  this.g.g[this.v][this.index]
+	}
+
+	//若没有顶点和v相连接,则返回-1
+	return -1
+}
+// 查看是否已经迭代完了图G中与顶点v相连接的所有顶点
+func (this *AdjIteratorSparseGraph)End()  bool{
+	return this.index >= len(this.g.g[this.v])
+}

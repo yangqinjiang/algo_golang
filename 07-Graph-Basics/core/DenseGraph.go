@@ -50,3 +50,35 @@ func (this *DenseGraph)hasEdge(v,w int) bool {
 	core.Assert( w >= 0 && w < this.n)
 	return this.g[v][w]
 }
+// 邻边迭代器, 传入一个图和一个顶点,
+// 迭代在这个图中和这个顶点向连的所有顶点
+type AdjIterator struct {
+	g *DenseGraph// 图G的引用
+	v ,index int
+}
+//邻边迭代器
+func NewAdjIterator(g *DenseGraph,v int) *AdjIterator{
+	core.Assert( v >= 0 && v <g.n)
+	return &AdjIterator{v:v,index:-1,g:g}
+}
+//返回图G中与顶点v相连接的第一个顶点
+func (this *AdjIterator)Begin() int  {
+	//索引从-1开始,因为每次遍历都需要调用一次Next()
+	this.index = -1
+	return this.Next()
+}
+//返回图G中顶点V相连接的下一个顶点
+func (this *AdjIterator)Next() int  {
+	//从当前index开始向后搜索,直到找到一个g[v][index]为true
+	for this.index +=1;this.index < this.g.V();this.index++{
+		if this.g.g[this.v][this.index]{
+			return this.index
+		}
+	}
+	//若没有顶点和v相连接,则返回-1
+	return -1
+}
+// 查看是否已经迭代完了图G中与顶点v相连接的所有顶点
+func (this *AdjIterator)End()  bool{
+	return this.index >= this.g.V()
+}
