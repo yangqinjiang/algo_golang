@@ -1,6 +1,9 @@
 package core
 
-import "algo_golang/04-Heap/core"
+import (
+	"algo_golang/04-Heap/core"
+	"fmt"
+)
 // 稀疏图 - 邻接表
 type SparseGraph struct {
 	n int //节点数
@@ -45,6 +48,16 @@ func (this *SparseGraph)hasEdge(v,w int) bool {
 		}
 	}
 	return false
+}
+//显示图的信息
+func (this *SparseGraph)Show()  {
+	for i:=0;i<this.n ;i++  {
+		fmt.Print("vertex ",i,":\t")
+		for j:=0;j< len(this.g[i]);j++  {
+			fmt.Print(this.g[i][j],"\t")
+		}
+		fmt.Println();
+	}
 }
 // 邻边迭代器, 传入一个图和一个顶点,
 // 迭代在这个图中和这个顶点向连的所有顶点

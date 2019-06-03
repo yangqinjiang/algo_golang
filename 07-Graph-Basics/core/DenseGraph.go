@@ -1,6 +1,9 @@
 package core
 
-import "algo_golang/04-Heap/core"
+import (
+	"algo_golang/04-Heap/core"
+	"fmt"
+)
 // 稠密图 - 邻接矩阵
 type DenseGraph struct {
 	n int //节点数
@@ -49,6 +52,16 @@ func (this *DenseGraph)hasEdge(v,w int) bool {
 	core.Assert( v >= 0 && v < this.n)
 	core.Assert( w >= 0 && w < this.n)
 	return this.g[v][w]
+}
+
+//显示图的信息
+func (this *DenseGraph)Show()  {
+	for i:=0;i<this.n ;i++  {
+		for j:=0;j<this.n ;j++  {
+			fmt.Print(this.g[i][j],"\t")
+		}
+		fmt.Println();
+	}
 }
 // 邻边迭代器, 传入一个图和一个顶点,
 // 迭代在这个图中和这个顶点向连的所有顶点
