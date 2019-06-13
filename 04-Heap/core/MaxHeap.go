@@ -2,7 +2,6 @@ package core
 
 import (
 	"fmt"
-	"github.com/smartystreets/assertions"
 )
 
 type MaxHeap struct {

@@ -18,7 +18,8 @@ func (e *MergeSort) __mergeSort(arr []int, l, r int) {
 	if l >= r {
 		return
 	}
-	mid := (l + r) / 2 //注意int的范围
+	//mid := (l + r) / 2 //注意int的范围,这里出现bug
+	mid := l + (r-l) / 2 //注意int的范围
 	e.__mergeSort(arr, l, mid)
 	e.__mergeSort(arr, mid+1, r) //这里是 加一
 	e.__merge(arr, l, mid, r)
@@ -68,7 +69,8 @@ func (e *MergeSort) __mergeSort2(arr []int, l, r int) {
 		iss.InsertionSortLR(arr, l, r)
 		return
 	}
-	mid := (l + r) / 2 //注意int的范围
+	//mid := (l + r) / 2 //注意int的范围,这里出现bug
+	mid := l + (r-l) / 2 //注意int的范围
 	e.__mergeSort2(arr, l, mid)
 	e.__mergeSort2(arr, mid+1, r) //这里是 加一
 
