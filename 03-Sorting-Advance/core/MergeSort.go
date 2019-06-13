@@ -55,16 +55,17 @@ func (e *MergeSort) __merge(arr []int, l, mid, r int) {
 
 //优化的合并排序
 
-func (e *MergeSort)MergeSort2(arr []int, n int)  {
+func (e *MergeSort) MergeSort2(arr []int, n int) {
 	e.__mergeSort2(arr, 0, n-1)
 }
+
 // 使用优化的归并排序算法, 对arr[l...r]的范围进行排序
-func (e *MergeSort) __mergeSort2(arr []int, l,r int) {
+func (e *MergeSort) __mergeSort2(arr []int, l, r int) {
 
 	//优化2:对于小规模数组,使用插入排序
-	if r-l <=15{
+	if r-l <= 15 {
 		iss := new(core.InsertionSort)
-		iss.InsertionSortLR(arr,l,r)
+		iss.InsertionSortLR(arr, l, r)
 		return
 	}
 	mid := (l + r) / 2 //注意int的范围
@@ -73,25 +74,25 @@ func (e *MergeSort) __mergeSort2(arr []int, l,r int) {
 
 	// 优化1: 对于arr[mid] <= arr[mid+1]的情况,不进行merge
 	// 对于近乎有序的数组非常有效,但是对于一般情况,有一定的性能损失
-	if arr[mid] > arr[mid+1]{
+	if arr[mid] > arr[mid+1] {
 		e.__merge(arr, l, mid, r)
 	}
 
 }
 
 // 使用自底向上的归并排序算法
-func (e *MergeSort)MergeSortBU(arr []int, n int)  {
+func (e *MergeSort) MergeSortBU(arr []int, n int) {
 
 	// Merge Sort Bottom Up 无优化版本
-	for sz := 1; sz<n;sz += sz{
+	for sz := 1; sz < n; sz += sz {
 		//注意边界
-		for i := 0;i< n-sz ; i+= sz+sz{
+		for i := 0; i < n-sz; i += sz + sz {
 			// 对 arr[i...i+sz-1] 和 arr[i+sz...i+2*sz-1] 进行归并
 			//注意边界
-			if i+sz+sz-1 > n-1{
-				e.__merge(arr,i , i+sz -1 ,n-1);
-			}else{
-				e.__merge(arr,i , i+sz -1 ,i+sz+sz-1);
+			if i+sz+sz-1 > n-1 {
+				e.__merge(arr, i, i+sz-1, n-1)
+			} else {
+				e.__merge(arr, i, i+sz-1, i+sz+sz-1)
 			}
 		}
 	}
@@ -100,7 +101,6 @@ func (e *MergeSort)MergeSortBU(arr []int, n int)  {
 
 }
 
-
 // 使用自底向上的归并排序算法
 //优化版本
 //https://github.com/liuyubobobo/Play-with-Algorithms/blob/master/03-Sorting-Advance/Course%20Code%20(C%2B%2B)/04-Merge-Sort-Bottom-Up/main.cpp
@@ -108,37 +108,36 @@ func (e *MergeSort)MergeSortBU(arr []int, n int)  {
 // 所以，Merge Sort BU也可以在1秒之内轻松处理100万数量级的数据
 // 注意：不要轻易根据循环层数来判断算法的复杂度，Merge Sort BU就是一个反例
 // 关于这部分陷阱，推荐看我的《玩转算法面试》课程，第二章：《面试中的复杂度分析》：）
-func (e *MergeSort)MergeSortBUAdvance(arr []int, n int)  {
+func (e *MergeSort) MergeSortBUAdvance(arr []int, n int) {
 
 	step := 16 //小数组 的容量大小
-	step_1 := step -1
+	step_1 := step - 1
 	iss := new(core.InsertionSort)
 
 	// 对于小数组, 使用插入排序优化
-	for i:=0 ; i<n ;i+=step{
+	for i := 0; i < n; i += step {
 		//注意边界
-		if i+step_1 > n-1{
-			iss.InsertionSortLR(arr,i,n-1)
-		}else{
-			iss.InsertionSortLR(arr,i,i+step_1)
+		if i+step_1 > n-1 {
+			iss.InsertionSortLR(arr, i, n-1)
+		} else {
+			iss.InsertionSortLR(arr, i, i+step_1)
 		}
 
 	}
 
 	// Merge Sort Bottom Up 无优化版本
-	for sz := step; sz<n;sz += sz{
+	for sz := step; sz < n; sz += sz {
 		//注意边界
-		for i := 0;i< n-sz ; i+= sz+sz{
+		for i := 0; i < n-sz; i += sz + sz {
 			// 对于arr[mid] <= arr[mid+1]的情况,不进行merge
-			if arr[i+sz-1] > arr[i+sz]{
-				if i+sz+sz-1 > n-1{
-					e.__merge(arr,i , i+sz -1 ,n-1);
-				}else{
-					e.__merge(arr,i , i+sz -1 ,i+sz+sz-1);
+			if arr[i+sz-1] > arr[i+sz] {
+				if i+sz+sz-1 > n-1 {
+					e.__merge(arr, i, i+sz-1, n-1)
+				} else {
+					e.__merge(arr, i, i+sz-1, i+sz+sz-1)
 				}
 			}
 		}
 	}
-
 
 }

@@ -47,8 +47,8 @@ func (e *InsertionSort) InsertionSortAdvance(arr []int, n int) {
 }
 
 // 对arr[l...r]范围的数组进行插入排序
-func (e *InsertionSort)InsertionSortLR(arr []int,l,r int)  {
-	for i := l+1; i <= r; i++ {
+func (e *InsertionSort) InsertionSortLR(arr []int, l, r int) {
+	for i := l + 1; i <= r; i++ {
 		//TODO:写法三
 		//注意边界
 		e := arr[i]

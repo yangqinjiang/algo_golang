@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
-	core2 "algo_golang/03-Sorting-Advance/core"
 	"algo_golang/02-Sorting-Basic/core"
+	core2 "algo_golang/03-Sorting-Advance/core"
+	"fmt"
 )
 
 func main() {

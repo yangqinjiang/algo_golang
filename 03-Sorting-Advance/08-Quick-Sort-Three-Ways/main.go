@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
-	core2 "algo_golang/03-Sorting-Advance/core"
 	"algo_golang/02-Sorting-Basic/core"
+	core2 "algo_golang/03-Sorting-Advance/core"
+	"fmt"
 )
 
 func main() {
@@ -59,7 +59,7 @@ func main() {
 	// 思考一下为什么在这种情况下, 快排退化成了O(n^2)的算法? :)
 	swapTimes = 10
 	fmt.Printf("Test for random array, size = %d ,, random range [0,%d]\n", n, swapTimes)
-	arr1 = st.GenerateRandomArray(n, 0,swapTimes)
+	arr1 = st.GenerateRandomArray(n, 0, swapTimes)
 	arr3 = st.CopyIntArray(arr1, n)
 	arr4 = st.CopyIntArray(arr1, n)
 	arr5 = st.CopyIntArray(arr1, n)

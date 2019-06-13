@@ -63,7 +63,6 @@ func main() {
 	arr4 = st.CopyIntArray(arr1, n)
 	arr5 = st.CopyIntArray(arr1, n)
 
-
 	st.TestSort("Merge Sort", ms.MergeSort, arr2, n)
 	st.TestSort("Merge Sort 2", ms.MergeSort2, arr3, n)
 	st.TestSort("Merge Sort mergeSortBU", ms.MergeSortBU, arr4, n)

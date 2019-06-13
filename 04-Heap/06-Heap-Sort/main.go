@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
-	core2 "algo_golang/03-Sorting-Advance/core"
 	core3 "algo_golang/02-Sorting-Basic/core"
+	core2 "algo_golang/03-Sorting-Advance/core"
 	"algo_golang/04-Heap/core"
+	"fmt"
 )
-
 
 func main() {
 
@@ -39,11 +38,8 @@ func main() {
 
 	fmt.Println("-------------")
 
-
-
-
 	// 测试2 测试近乎有序的数组
-	swapTimes:=100
+	swapTimes := 100
 	fmt.Printf("Test for nearly ordered array, size = %d , swap time = %d \n", n, swapTimes)
 
 	arr1 = st.GenerateNearlyOrderedArray(n, swapTimes)
@@ -69,7 +65,7 @@ func main() {
 	// 测试3 测试存在包含大量相同元素的数组
 	fmt.Printf("Test for random array, size = %d , random range [0,10] \n", n)
 
-	arr1 = st.GenerateRandomArray(n, 0,10)
+	arr1 = st.GenerateRandomArray(n, 0, 10)
 	//arr2 = st.CopyIntArray(arr1, n)
 	arr3 = st.CopyIntArray(arr1, n)
 	arr4 = st.CopyIntArray(arr1, n)
