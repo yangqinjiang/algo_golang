@@ -39,7 +39,7 @@ func (this *SparseGraph)AddEdge(v,w int)  {
 	this.m ++
 }
 // 验证图中是否有从v到w的边
-func (this *SparseGraph)hasEdge(v,w int) bool {
+func (this *SparseGraph)HasEdge(v,w int) bool {
 	core.Assert( v >= 0 && v < this.n)
 	core.Assert( w >= 0 && w < this.n)
 	for i:=0 ; i<len(this.g[v]);i++{
@@ -56,8 +56,15 @@ func (this *SparseGraph)Show()  {
 		for j:=0;j< len(this.g[i]);j++  {
 			fmt.Print(this.g[i][j],"\t")
 		}
-		fmt.Println();
+		fmt.Println()
 	}
+}
+//返回图中一个顶点的所有邻边
+func (this *SparseGraph)Adj(v int) []int   {
+	if !(v >=0 && v < this.n){
+		panic("v error")
+	}
+	return this.g[v]
 }
 // 邻边迭代器, 传入一个图和一个顶点,
 // 迭代在这个图中和这个顶点向连的所有顶点

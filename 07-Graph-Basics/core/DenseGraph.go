@@ -38,7 +38,7 @@ func (this *DenseGraph)AddEdge(v,w int)  {
 	core.Assert( v >= 0 && v < this.n)
 	core.Assert( w >= 0 && w < this.n)
 
-	if this.hasEdge(v,w){
+	if this.HasEdge(v,w){
 		return
 	}
 	this.g[v][w] = true
@@ -48,7 +48,7 @@ func (this *DenseGraph)AddEdge(v,w int)  {
 	this.m ++
 }
 // 验证图中是否有从v到w的边
-func (this *DenseGraph)hasEdge(v,w int) bool {
+func (this *DenseGraph)HasEdge(v,w int) bool {
 	core.Assert( v >= 0 && v < this.n)
 	core.Assert( w >= 0 && w < this.n)
 	return this.g[v][w]
@@ -63,6 +63,20 @@ func (this *DenseGraph)Show()  {
 		fmt.Println();
 	}
 }
+//返回图中一个顶点的所有邻边
+func (this *DenseGraph)Adj(v int) []int   {
+	if !(v >=0 && v < this.n){
+		panic("v error")
+	}
+	var adjV []int
+	for i:=0;i<this.n ; i++ {
+		if this.g[v][i]{
+			adjV = append(adjV, i)
+		}
+	}
+	return adjV
+}
+
 // 邻边迭代器, 传入一个图和一个顶点,
 // 迭代在这个图中和这个顶点向连的所有顶点
 type AdjIterator struct {
