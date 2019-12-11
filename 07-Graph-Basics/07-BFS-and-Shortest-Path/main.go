@@ -49,5 +49,6 @@ func main() {
 	bfs2 := core.NewShortestPath(g2,0)
 	fmt.Println("BFS 2: ")
 	bfs2.ShowPath(3)//output:0 -> 5 -> 3
-	fmt.Println()
+	//查看从s点到w点的最短路径长度
+	fmt.Println(bfs2.Length(5))
 }
